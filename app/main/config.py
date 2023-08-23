@@ -12,10 +12,11 @@ class DevelopmentConfig(Config):
     ENV_NAME = "dev"
 
     # SQLAlchemy Config
-    # DB_HOST = os.getenv("DB_HOST")
-    # DB_USER = os.getenv("DB_USER")
-    # DB_PASSWORD = os.getenv("DB_PASSWORD")
-    # DB_DATABASE = os.getenv("DB_DATABASE")
+    DB_HOST = os.getenv("DB_HOST")
+    DB_USER = os.getenv("DB_USER")
+    DB_PASSWORD = os.getenv("DB_PASSWORD")
+    DB_DATABASE = os.getenv("DB_DATABASE")
+    SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_DATABASE}"
 
 """
 flask --app 'app/main:create_app("test")' run
