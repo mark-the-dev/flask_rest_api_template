@@ -1,9 +1,10 @@
 import unittest
+from .. import TestGroup
+
 import json
-from . import TestRoute
 from flask import Response
 
-class TestExampleRoute(TestRoute):
+class TestExampleRoute(TestGroup):
     
     def test_get_example_status_code_200(self):
         response = self.client.get('/example/')
@@ -14,6 +15,3 @@ class TestExampleRoute(TestRoute):
         
         response_data = json.loads(response.data.decode('utf-8'))
         self.assertEqual(response_data['message'], 'bar')
-    
-if __name__ == '__main__':
-    unittest.main()

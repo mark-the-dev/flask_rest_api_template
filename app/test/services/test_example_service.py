@@ -1,10 +1,10 @@
 import unittest
-from main.services.example_service import *
-from main.models.example_model import Example
-from . import TestService
-from app.main import db
+from .. import TestGroup
 
-class TestExampleService(TestService):
+from main.services.example_service import *
+from main.models.example_model import *
+
+class TestExampleService(TestGroup):
 
     def test_foo(self):
         # Arrange
@@ -41,6 +41,3 @@ class TestExampleService(TestService):
         
         # Assert
         self.assertEqual(len(results), 2)
-
-if __name__ == '__main__':
-    unittest.main()
