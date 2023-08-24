@@ -4,7 +4,7 @@ from main import create_app
 """
 This is a super class for testing any API endpoints
 """
-
-class TestAPIResource(unittest.TestCase):
+class TestRoute(unittest.TestCase):
     def setUp(self):
-        self.app = create_app("test").test_client()
+        self.app = create_app("test")
+        self.client = self.app.test_client()

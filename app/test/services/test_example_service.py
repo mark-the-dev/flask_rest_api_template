@@ -1,7 +1,10 @@
 import unittest
 from main.services.example_service import *
+from main.models.example_model import Example
+from . import TestService
+from app.main import db
 
-class TestExampleService(unittest.TestCase):
+class TestExampleService(TestService):
 
     def test_foo(self):
         # Arrange
@@ -22,6 +25,22 @@ class TestExampleService(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected, actual, f"Got '{actual}' instead of '{expected}'")
+        
+    def test_get_all_examples(self):
+        # Arrange
+        with self.app.app_context():
+            example1 = Example(id=1)
+            example2 = Example(id=2)
+            self.db.session.add(example1)
+            self.db.session.add(example2)
+            self.db.session.commit()
+        
+        # Act
+        with self.app.app_context():
+            results = get_all_examples()
+        
+        # Assert
+        self.assertEqual(len(results), 2)
 
 if __name__ == '__main__':
     unittest.main()
